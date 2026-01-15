@@ -3,25 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANEL | ARCHIVE</title>
+    <title>ANEL | MERCURY POISONING</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-color: #050505;
-            --chrome-light: #ffffff;
+            --bg-color: #020202;
             --chrome-mid: #a0a0a0;
-            --chrome-dark: #444444;
-            --accent: #ff0000; /* Subtle blood red accent */
+            --accent: #ff0000;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: crosshair; /* Crosshair cursor for edge */
+            cursor: crosshair;
         }
 
         body {
@@ -40,13 +38,14 @@
             height: 100%;
             pointer-events: none;
             z-index: 999;
-            opacity: 0.05;
-            background: url('https://cdnjs.cloudflare.com/ajax/libs/media-element/4.2.16/renderers/dailymotion.min.png'); /* Fallback generic noise feel */
+            opacity: 0.08;
+            background: url('https://cdnjs.cloudflare.com/ajax/libs/media-element/4.2.16/renderers/dailymotion.min.png');
             animation: noise 0.2s infinite;
+            mix-blend-mode: overlay;
         }
 
         /* --- TYPOGRAPHY & CHROME EFFECT --- */
-        h1, h2, .logo {
+        h1, h2, .logo, .p-price {
             font-family: 'UnifrakturMaguntia', cursive;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -56,12 +55,11 @@
             background: linear-gradient(to bottom, 
                 #fff 0%, 
                 #e0e0e0 40%, 
-                #505050 50%, 
+                #707070 50%, 
                 #a0a0a0 60%, 
                 #fff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0px 0px 15px rgba(255, 255, 255, 0.3);
             filter: drop-shadow(0 0 5px rgba(255,255,255,0.5));
         }
 
@@ -70,22 +68,26 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 2rem;
-            border-bottom: 1px solid #222;
-            position: relative;
+            padding: 2rem 3rem;
+            position: fixed;
+            width: 100%;
+            z-index: 100;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
         }
 
         .logo {
-            font-size: 3rem;
+            font-size: 2.5rem;
             animation: glitch 3s infinite;
         }
 
         .nav-links a {
-            color: #666;
+            color: #888;
             text-decoration: none;
             margin-left: 2rem;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
             transition: 0.3s;
         }
 
@@ -96,35 +98,33 @@
 
         /* --- HERO SECTION --- */
         .hero {
-            height: 80vh;
+            height: 90vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
             border-bottom: 1px solid #222;
+            background: url('https://images.unsplash.com/photo-1473773508845-188df298d2d1?q=80&w=2570&auto=format&fit=crop&ixlib=rb-4.0.3') no-repeat center center/cover;
+        }
+        
+        /* Darken the hero image */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.7);
+        }
+
+        .hero-content {
+            z-index: 2;
+            text-align: center;
         }
 
         .big-title {
-            font-size: 15vw;
+            font-size: 12vw;
             line-height: 0.8;
-            text-align: center;
-            z-index: 2;
             mix-blend-mode: exclusion;
-        }
-
-        .overlay-img {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(0,0,0,0) 70%);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 50%;
-            z-index: 1;
-            animation: spin 10s linear infinite;
         }
 
         /* --- MARQUEE --- */
@@ -135,74 +135,65 @@
             white-space: nowrap;
             padding: 0.5rem 0;
             font-family: 'UnifrakturMaguntia', cursive;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #000;
         }
 
         .marquee-content {
             display: inline-block;
-            animation: marquee 20s linear infinite;
+            animation: marquee 25s linear infinite;
+        }
+
+        /* --- COMMON SECTION STYLES --- */
+        .collection-header {
+            text-align: center;
+            padding: 6rem 0 3rem;
+            font-size: 2.5rem;
+            color: #fff;
+            border-top: 1px solid #222;
         }
 
         /* --- SHOP GRID --- */
-        .collection-header {
-            text-align: center;
-            padding: 4rem 0;
-            font-size: 2rem;
-            color: #333;
-        }
-
         .grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1px;
-            background-color: #222; /* Gap color */
-            border-top: 1px solid #222;
+            background-color: #333; /* Gap color */
+            border-bottom: 1px solid #333;
         }
 
         .product-card {
-            background-color: #050505;
-            padding: 2rem;
+            background-color: #080808;
+            padding: 1rem;
             position: relative;
             transition: 0.3s;
-            height: 500px;
+            height: 550px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border: 1px solid transparent;
-        }
-
-        .product-card:hover {
-            background-color: #0a0a0a;
-            border: 1px solid #333;
         }
 
         .product-image {
             width: 100%;
-            height: 70%;
-            background: #111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #333;
-            font-family: 'UnifrakturMaguntia', cursive;
-            font-size: 5rem;
+            height: 80%;
+            background: #000;
             overflow: hidden;
             position: relative;
         }
         
-        /* Simulating silver fabric visuals with CSS gradients */
-        .silver-fabric {
+        .product-image img {
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #111 25%, #222 50%, #111 75%);
-            opacity: 0.8;
-            transition: 0.5s;
+            object-fit: cover;
+            /* THE ANEL FILTER: Dark, desaturated, high contrast by default */
+            filter: grayscale(100%) contrast(120%) brightness(70%);
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), filter 0.6s ease;
         }
         
-        .product-card:hover .silver-fabric {
-            opacity: 1;
+        /* Hover effect: Reveal color and zoom */
+        .product-card:hover .product-image img {
+            filter: grayscale(0%) contrast(100%) brightness(100%);
             transform: scale(1.05);
-            background: linear-gradient(135deg, #333 25%, #666 50%, #333 75%);
         }
 
         .product-info {
@@ -210,30 +201,69 @@
             justify-content: space-between;
             align-items: flex-end;
             margin-top: 1rem;
+            padding: 0 0.5rem;
         }
 
         .p-name {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             text-transform: uppercase;
             font-weight: 700;
             letter-spacing: 1px;
+            color: #fff;
         }
 
         .p-price {
-            font-family: 'UnifrakturMaguntia', cursive;
-            font-size: 1.5rem;
-            color: #fff;
+            font-size: 1.4rem;
+            color: #ddd;
         }
 
         .sold-out {
             color: var(--accent);
             text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        /* --- NEW SECTION: CAMPAIGN EDITORIAL GRID --- */
+        .editorial-grid {
+            display: grid;
+            /* Creates a dynamic collage layout */
+            grid-template-columns: repeat(4, 1fr);
+            grid-auto-rows: 300px;
+            gap: 2px;
+            background-color: #000;
+            padding: 0 2rem 6rem;
+        }
+
+        .editorial-item {
+            position: relative;
+            overflow: hidden;
+            background: #111;
+        }
+
+        /* Classes to make some images bigger in the grid */
+        .wide { grid-column: span 2; }
+        .tall { grid-row: span 2; }
+
+        .editorial-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* A slightly grittier filter for the model shots */
+            filter: grayscale(100%) contrast(150%) brightness(60%) sepia(10%);
+            transition: 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        .editorial-item:hover img {
+            transform: scale(1.03);
+            /* Flash photography effect on hover */
+            filter: grayscale(0%) contrast(120%) brightness(110%);
         }
 
         /* --- FOOTER --- */
         footer {
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             border-top: 1px solid #333;
+            background: #050505;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -241,15 +271,16 @@
         }
 
         .footer-logo {
-            font-size: 5rem;
-            margin-bottom: 2rem;
-            opacity: 0.3;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
         }
 
         .legal {
             font-size: 0.7rem;
             color: #444;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* --- ANIMATIONS --- */
@@ -258,37 +289,22 @@
             100% { transform: translateX(-50%); }
         }
 
-        @keyframes spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-
         @keyframes glitch {
-            0% { transform: translate(0); }
-            20% { transform: translate(-2px, 2px); }
-            40% { transform: translate(-2px, -2px); }
-            60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
-            100% { transform: translate(0); }
+            0% { transform: translate(0); text-shadow: 2px 2px 0px var(--accent), -2px -2px 0px blue; }
+            90% { transform: translate(0); text-shadow: 2px 2px 0px var(--accent), -2px -2px 0px blue; }
+            92% { transform: translate(-3px, 2px); text-shadow: -2px -2px 0px var(--accent), 2px 2px 0px blue; }
+            94% { transform: translate(2px, -3px); }
+            96% { transform: translate(-2px, 3px); }
+            98% { transform: translate(3px, -2px); }
+            100% { transform: translate(0); text-shadow: 2px 2px 0px var(--accent), -2px -2px 0px blue; }
         }
 
-        /* --- BUTTON --- */
-        .btn {
-            padding: 1rem 2rem;
-            background: transparent;
-            border: 1px solid #fff;
-            color: #fff;
-            font-family: 'Rajdhani', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.3s;
-            margin-top: 2rem;
-        }
-
-        .btn:hover {
-            background: #fff;
-            color: #000;
-            box-shadow: 0 0 20px #fff;
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .big-title { font-size: 18vw; }
+            .nav-links { display: none; }
+            .editorial-grid { grid-template-columns: 1fr; grid-auto-rows: 400px; padding: 0; }
+            .wide, .tall { grid-column: span 1; grid-row: span 1; }
         }
 
     </style>
@@ -308,35 +324,34 @@
     </nav>
 
     <header class="hero">
-        <div class="overlay-img"></div>
-        <h1 class="big-title chrome-text">ANEL<br>EST. 2026</h1>
-        <p style="margin-top: 2rem; letter-spacing: 5px; text-transform: uppercase; font-size: 0.8rem;">
-            Heavy Metal • Soft Skin • No Exit
-        </p>
-        <button class="btn">Enter The Void</button>
+        <div class="hero-content">
+            <h1 class="big-title chrome-text">ANEL<br>CORP.</h1>
+            <p style="margin-top: 1rem; letter-spacing: 6px; text-transform: uppercase; font-size: 0.8rem; color: #fff;">
+                Collection 001: Mercury Poisoning
+            </p>
+        </div>
     </header>
 
     <div class="marquee-container">
         <div class="marquee-content">
-            ANEL // COLLECTION 001 // MERCURY POISONING // DO NOT CONSUME // ANEL // WORLDWIDE SHIPPING // THE END IS NIGH // WEAR YOUR SINS // ANEL // CHROME HEARTED // 
-            ANEL // COLLECTION 001 // MERCURY POISONING // DO NOT CONSUME // ANEL // WORLDWIDE SHIPPING // THE END IS NIGH // WEAR YOUR SINS // ANEL // CHROME HEARTED // 
+            † ANEL † COLLECTION 001 † MERCURY POISONING † DO NOT CONSUME † ANEL † WORLDWIDE SHIPPING † THE END IS NIGH † WEAR YOUR SINS † ANEL † CHROME HEARTED † 
+            † ANEL † COLLECTION 001 † MERCURY POISONING † DO NOT CONSUME † ANEL † WORLDWIDE SHIPPING † THE END IS NIGH † WEAR YOUR SINS † ANEL † CHROME HEARTED † 
         </div>
     </div>
 
     <div class="collection-header">
-        <h2>OBJECTS OF DESIRE</h2>
+        <h2 class="chrome-text">OBJECTS OF DESIRE</h2>
     </div>
 
     <section class="grid">
         <div class="product-card">
             <div class="product-image">
-                <div class="silver-fabric"></div>
-                <span style="position: absolute; z-index: 2; color: white;">†</span>
+                <img src="https://images.unsplash.com/photo-1606767294336-e143153914d2?q=80&w=1974&auto=format&fit=crop" alt="Anel Zip-Up">
             </div>
             <div class="product-info">
                 <div>
                     <div class="p-name">Anel Zip-Up 'Exile'</div>
-                    <div style="font-size: 0.8rem; color: #666;">Heavyweight French Terry</div>
+                    <div style="font-size: 0.8rem; color: #666;">Heavyweight Cotton</div>
                 </div>
                 <div class="p-price">$450.00</div>
             </div>
@@ -344,13 +359,12 @@
 
         <div class="product-card">
             <div class="product-image">
-                <div class="silver-fabric"></div>
-                <span style="position: absolute; z-index: 2; color: white;">A</span>
+                <img src="https://images.unsplash.com/photo-1499111545213-f40c1e3262da?q=80&w=2670&auto=format&fit=crop" alt="Leather Jacket">
             </div>
             <div class="product-info">
                 <div>
-                    <div class="p-name">Leather Cross Patch Denim</div>
-                    <div style="font-size: 0.8rem; color: #666;">Vintage Levi's Rework</div>
+                    <div class="p-name">Horsehide Moto Jacket</div>
+                    <div style="font-size: 0.8rem; color: #666;">Sterling Silver Hardware</div>
                 </div>
                 <div class="p-price sold-out">SOLD OUT</div>
             </div>
@@ -358,13 +372,12 @@
 
         <div class="product-card">
             <div class="product-image">
-                <div class="silver-fabric"></div>
-                <span style="position: absolute; z-index: 2; color: white;">𝕸</span>
+                <img src="https://images.unsplash.com/photo-1612902457483-c8781245d278?q=80&w=2670&auto=format&fit=crop" alt="Silver Rings">
             </div>
             <div class="product-info">
                 <div>
-                    <div class="p-name">Mercury Pendant</div>
-                    <div style="font-size: 0.8rem; color: #666;">.925 Sterling Silver</div>
+                    <div class="p-name">Mercury Armor Rings</div>
+                    <div style="font-size: 0.8rem; color: #666;">.925 Sterling Silver (Set of 3)</div>
                 </div>
                 <div class="p-price">$1,200.00</div>
             </div>
@@ -372,8 +385,7 @@
 
         <div class="product-card">
             <div class="product-image">
-                <div class="silver-fabric"></div>
-                <span style="position: absolute; z-index: 2; color: white;">👁</span>
+                <img src="https://images.unsplash.com/photo-1503342217505-b0815f402634?q=80&w=2670&auto=format&fit=crop" alt="Sin Tee">
             </div>
             <div class="product-info">
                 <div>
@@ -385,26 +397,46 @@
         </div>
     </section>
 
+    <div class="collection-header">
+        <h2 class="chrome-text">CAMPAIGN: VISUAL NOISE</h2>
+    </div>
+
+    <section class="editorial-grid">
+        <div class="editorial-item tall">
+            <img src="https://images.unsplash.com/photo-1547256376-568824105890?q=80&w=2574&auto=format&fit=crop" alt="Model 1">
+        </div>
+        <div class="editorial-item">
+            <img src="https://images.unsplash.com/photo-1588177807916-0e42eb3c3762?q=80&w=2574&auto=format&fit=crop" alt="Model Jewelry">
+        </div>
+        <div class="editorial-item">
+            <img src="https://images.unsplash.com/photo-1550589050-13173215811d?q=80&w=2670&auto=format&fit=crop" alt="Dark aesthetic">
+        </div>
+         <div class="editorial-item wide">
+            <img src="https://images.unsplash.com/photo-1543223617-79bbd2043d89?q=80&w=2670&auto=format&fit=crop" alt="Streetwear vibe">
+        </div>
+    </section>
+
+
     <footer>
         <div class="footer-logo chrome-text">ANEL</div>
         <p class="legal">© 2026 Anel Studios. No Refunds. No Returns. No Prayers.</p>
-        <div style="margin-top: 2rem;">
-            <a href="#" style="color: #666; margin: 0 1rem; text-decoration: none;">INSTAGRAM</a>
-            <a href="#" style="color: #666; margin: 0 1rem; text-decoration: none;">EMAIL</a>
+        <div style="margin-top: 2rem; opacity: 0.5;">
+            <a href="#" style="color: #fff; margin: 0 1rem; text-decoration: none; letter-spacing: 2px;">INSTAGRAM</a>
+            <a href="#" style="color: #fff; margin: 0 1rem; text-decoration: none; letter-spacing: 2px;">EMAIL</a>
         </div>
     </footer>
 
     <script>
-        // Simple script to make the cursor follow slightly delayed for a 'druggy' effect
+        // Kept the druggy cursor effect
         const cursor = document.createElement('div');
         cursor.style.width = '20px';
         cursor.style.height = '20px';
-        cursor.style.border = '1px solid white';
+        cursor.style.border = '2px solid white';
         cursor.style.borderRadius = '50%';
         cursor.style.position = 'fixed';
         cursor.style.pointerEvents = 'none';
         cursor.style.zIndex = '1000';
-        cursor.style.transition = 'transform 0.1s ease';
+        cursor.style.transition = 'transform 0.15s ease-out';
         cursor.style.mixBlendMode = 'difference';
         document.body.appendChild(cursor);
 
